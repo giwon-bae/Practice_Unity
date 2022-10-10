@@ -100,7 +100,8 @@ public class PlayerCtrl : MonoBehaviour
             EnemySpawner enemySpawner = GameObject.Find("EnemySpawner").GetComponent<EnemySpawner>();
             enemySpawner.spawnCool = 99999f;
             gameObject.SetActive(false);
-
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            gameManager.EndGame();
         }
     }
 }

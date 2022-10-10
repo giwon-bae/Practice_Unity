@@ -9,9 +9,14 @@ public class GameManager : MonoBehaviour
     public PlayerCtrl player;
     public Text status;
     public Text goldText;
+    public float surviveTime;
+
+    private bool isGameOver;
 
     void Start()
     {
+        surviveTime = 0;
+        isGameOver = false;
         player = GameObject.Find("Player").GetComponent<PlayerCtrl>();
     }
 
@@ -22,9 +27,22 @@ public class GameManager : MonoBehaviour
         status.text = statusText;
         goldText.text = "Gold : " + string.Format("{0:n0}", player.gold);
 
-        if (Input.GetKeyDown(KeyCode.R))
+        
+        if (isGameOver)
         {
-            SceneManager.LoadScene("GameScene");
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene("GameScene");
+            }
         }
+        else
+        {
+            surviveTime += Time.deltaTime;
+        }
+    }
+
+    public void EndGame()
+    {
+        isGameOver = true;
     }
 }

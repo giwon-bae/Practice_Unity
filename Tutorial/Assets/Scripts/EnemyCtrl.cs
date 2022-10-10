@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyCtrl : MonoBehaviour
 {
     Rigidbody2D rigid;
+    GameManager gameManager;
     Vector2 enemyvelocity;
     int random;
     bool canMove = false;
@@ -14,10 +15,16 @@ public class EnemyCtrl : MonoBehaviour
     public int hp = 10;
     public int dropGold = 10;
 
+    private int extra_hp = 0;
+
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
+        gameManager = FindObjectOfType<GameManager>();
         random = Random.Range(0, 2);
+
+        extra_hp = (int)gameManager.surviveTime / 10 * 10; // increase 10 every 10 seconds
+        hp += extra_hp;
         if (random == 0)
         {
             enemyvelocity = Vector2.right * speed;
