@@ -28,6 +28,7 @@
 -define:PLATFORM_ARCH_64
 -define:UNITY_64
 -define:UNITY_INCLUDE_TESTS
+-define:UNITY_ANALYTICS
 -define:USE_SEARCH_ENGINE_API
 -define:USE_SEARCH_TABLE
 -define:USE_SEARCH_MODULE
@@ -112,6 +113,7 @@
 -define:ENABLE_LEGACY_INPUT_MANAGER
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"D:/GitHub/Practice_Unity/Uni-Run/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/Managed/UnityEditor.Graphs.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
@@ -320,7 +322,6 @@
 -r:"D:/Unity/2021.2.0b2/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
--r:"D:/Unity/Unity-Programming-Essence-2021/Unity-Programming-Essence-2021/11/Uni-Run/Library/PackageCache/com.unity.ext.nunit@1.0.6/net35/unity-custom/nunit.framework.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.TestRunner.ref.dll"
 "Library/PackageCache/com.unity.test-framework@1.1.26/UnityEditor.TestRunner/Api/CallbacksDelegator.cs"
 "Library/PackageCache/com.unity.test-framework@1.1.26/UnityEditor.TestRunner/Api/CallbacksDelegatorListener.cs"
