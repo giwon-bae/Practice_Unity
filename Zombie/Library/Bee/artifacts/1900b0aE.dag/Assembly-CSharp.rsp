@@ -113,6 +113,11 @@
 -define:UNITY_POST_PROCESSING_STACK_V2
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
+-r:"D:/GitHub/Practice_Unity/Zombie/Library/PackageCache/com.unity.analytics@3.5.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll"
+-r:"D:/GitHub/Practice_Unity/Zombie/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Editor.dll"
+-r:"D:/GitHub/Practice_Unity/Zombie/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Tracker.dll"
+-r:"D:/GitHub/Practice_Unity/Zombie/Library/PackageCache/com.unity.cinemachine@2.8.0/Runtime/ThirdParty/clipper_library.dll"
+-r:"D:/GitHub/Practice_Unity/Zombie/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/Managed/UnityEngine/UnityEditor.DeviceSimulatorModule.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/Managed/UnityEngine/UnityEditor.DiagnosticsModule.dll"
@@ -314,11 +319,6 @@
 -r:"D:/Unity/2021.2.0b2/Editor/Data/PlaybackEngines/AndroidPlayer/Unity.Android.Types.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll"
 -r:"D:/Unity/2021.2.0b2/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll"
--r:"D:/Unity/Unity-Programming-Essence-2021/Unity-Programming-Essence-2021/14/Zombie/Library/PackageCache/com.unity.analytics@3.5.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll"
--r:"D:/Unity/Unity-Programming-Essence-2021/Unity-Programming-Essence-2021/14/Zombie/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Editor.dll"
--r:"D:/Unity/Unity-Programming-Essence-2021/Unity-Programming-Essence-2021/14/Zombie/Library/PackageCache/com.unity.analytics@3.5.3/Unity.Analytics.Tracker.dll"
--r:"D:/Unity/Unity-Programming-Essence-2021/Unity-Programming-Essence-2021/14/Zombie/Library/PackageCache/com.unity.cinemachine@2.8.0/Runtime/ThirdParty/clipper_library.dll"
--r:"D:/Unity/Unity-Programming-Essence-2021/Unity-Programming-Essence-2021/14/Zombie/Library/PackageCache/com.unity.nuget.newtonsoft-json@2.0.0/Runtime/Newtonsoft.Json.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Analytics.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/Cinemachine.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/com.unity.cinemachine.editor.ref.dll"
