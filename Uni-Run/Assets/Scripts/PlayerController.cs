@@ -2,7 +2,7 @@
 
 public class PlayerController : MonoBehaviour {
    public AudioClip deathClip;
-   public float jumpForce = 700f;
+   public float jumpForce = 500f;
 
    private int jumpCount = 0;
    private bool isGrounded = false;
