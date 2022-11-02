@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour {
         {
             return;
         }
-        if (Input.GetMouseButtonDown(0) && jumpCount < 2)
+        if (Input.GetMouseButtonDown(0) && jumpCount < 3)
         {
             jumpCount++;
             playerRigidbody.velocity = Vector2.zero;
