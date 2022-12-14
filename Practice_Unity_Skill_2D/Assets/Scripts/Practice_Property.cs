@@ -30,7 +30,19 @@ public class Practice_Property : MonoBehaviour
     void Start()
     {
         Age = 10;
-        Age = 25;
+        //Age = 25;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Age = 20;
+        }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            Age = 10;
+        }
     }
 
     void AgeChanged()
