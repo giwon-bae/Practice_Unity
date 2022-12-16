@@ -1,14 +1,3 @@
-{
-"instructions_readme": "1) Open Chrome, 2) go to chrome://tracing, 3) click Load, 4) navigate to this file.",
-
-"traceEvents":[
-{ "pid": "BeeDriver", "ph":"M", "name": "process_name", "args": {"name": "BeeDriver"} },
-{ "pid": "BeeDriver", "ph":"M", "name": "process_sort_index", "args": {"sort_index": -2} },
-{ "pid": "BeeDriver", "tid": 1, "ph":"M", "name": "thread_name", "args": {"name": ""} },
-{ "pid": "BeeDriver", "tid": 1,"ts": 8047971.7,"dur": 0, "ph":"X", "name": "Build ScriptAssemblies"},
-{ "pid": "BeeDriver", "tid": 1,"ts": 8048830.3,"dur": 33867.5, "ph":"X", "name": "WriteBuildProgramData"},
-{ "pid": "BeeDriver", "tid": 1,"ts": 8082780.8,"dur": 213453.9, "ph":"X", "name": "Run Backend"},
-{ "pid": "BeeDriver", "tid": 1,"ts": 8296252.5,"dur": 13247.6, "ph":"X", "name": "Finish"},
 { "cat":"", "pid":"bee_backend", "tid":0, "ts":0, "ph":"M", "name":"process_name", "args": { "name":"bee_backend" } }
 ,{ "pid":"bee_backend", "tid":0, "ts":41129812667, "dur":4425, "ph":"X", "name": "DriverCheckDagSignatures",  "args": { "durationMS":4, "detail":"" }}
 ,{ "pid":"bee_backend", "tid":0, "ts":41129817092, "dur":11437, "ph":"X", "name": "DriverInitData",  "args": { "durationMS":11, "detail":"" }}
@@ -325,13 +314,4 @@
 ,{ "pid":"bee_backend", "tid":6, "ts":41129918658, "dur":7, "ph":"X", "name": "CheckInputSignature",  "args": { "durationMS":0, "detail":"CopyFiles Library/ScriptAssemblies/com.unity.cinemachine.editor.pdb" }}
 ,{ "pid":"bee_backend", "tid":6, "ts":41129918809, "dur":1817, "ph":"X", "name": "WaitingForWork", "cname":"thread_state_sleeping",  "args": { "durationMS":2, "detail":"" }}
 ,{ "pid":"bee_backend", "tid":6, "ts":41129920626, "dur":10192, "ph":"X", "name": "Exiting",  "args": { "durationMS":10, "detail":"BuildLoop" }}
-,{}
-
-],
-"meta_datetime": "12/17/2022 00:33:40",
-"meta_command_line": "D:\\Unity\\2021.2.0b2\\Editor\\Unity.exe -projectpath D:/GitHub/Practice_Unity/Zombie -useHub -hubIPC -cloudEnvironment production -hubSessionId 63b88650-7d4b-11ed-ab16-5f1222f7be37 -accessToken Yz086N2sPIqscUb1WN3guhqy2PaihEl8VVFiBhQpg5o00df",
-"meta_command_line_args": "D:\\Unity\\2021.2.0b2\\Editor\\Unity.exe -projectpath D:/GitHub/Practice_Unity/Zombie -useHub -hubIPC -cloudEnvironment production -hubSessionId 63b88650-7d4b-11ed-ab16-5f1222f7be37 -accessToken Yz086N2sPIqscUb1WN3guhqy2PaihEl8VVFiBhQpg5o00df",
-"meta_user_name": "rldnj",
-"meta_os_version": "Microsoft Windows NT 10.0.19045.0",
-"meta_cpu_count": "6"
-}
+,
