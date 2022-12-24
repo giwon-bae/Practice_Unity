@@ -51,11 +51,13 @@ public class LobbyManager : MonoBehaviourPunCallbacks {
 
     // (빈 방이 없어)랜덤 룸 참가에 실패한 경우 자동 실행
     public override void OnJoinRandomFailed(short returnCode, string message) {
-        
+        connectionInfoText.text = "빈 방이 없음, 새로운 방 생성...";
+        PhotonNetwork.CreateRoom(null, new RoomOptions { MaxPlayers = 4 });
     }
 
     // 룸에 참가 완료된 경우 자동 실행
     public override void OnJoinedRoom() {
-        
+        connectionInfoText.text = "방 참가 성공";
+        PhotonNetwork.LoadLevel("Main");
     }
 }
