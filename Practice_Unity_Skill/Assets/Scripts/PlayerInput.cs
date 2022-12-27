@@ -7,9 +7,12 @@ public class PlayerInput : MonoBehaviour
     public string moveAxisXName = "Vertical";
     public string moveAxisYName = "Horizontal";
 
-    public float move { get; private set; }
+    public float XAxis { get; private set; }
+    public float YAxis { get; private set; }
+
     void Update()
     {
-        
+        XAxis = Input.GetAxis(moveAxisXName);
+        YAxis = Input.GetAxis(moveAxisYName);
     }
 }

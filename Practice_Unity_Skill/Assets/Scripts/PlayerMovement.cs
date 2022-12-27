@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public float moveSpeed = 5f;
+
+    private PlayerInput playerInput;
+    private Rigidbody playerRigidbody;
+
+    private void Start()
     {
-        
+        playerInput = GetComponent<PlayerInput>();
+        playerRigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        Move();
+    }
+
+    private void Move()
+    {
+        Vector3 moveDistance = new Vector3(playerInput.XAxis, 0f, playerInput.YAxis) * moveSpeed * Time.deltaTime;
+        playerRigidbody.MovePosition(playerRigidbody.position + moveDistance);
     }
 }
