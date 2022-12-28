@@ -10,6 +10,14 @@ public class PlayerInput : MonoBehaviour
     public float XAxis { get; private set; }
     public float YAxis { get; private set; }
 
+    PlayerMovement playerMovement;
+
+    private void Start()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+        playerMovement.Idx = 20;
+    }
+
     void Update()
     {
         XAxis = Input.GetAxis(moveAxisXName);
