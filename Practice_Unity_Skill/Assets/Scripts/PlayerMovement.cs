@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody playerRigidbody;
 
-    private int val;
+    private int hp;
 
     public int Hp
     {
@@ -19,14 +19,13 @@ public class PlayerMovement : MonoBehaviour
         }
         set
         {
-            if (value <= 0)
+            if (value > 100)
             {
-                Debug.Log("Die");
+                hp = 100;
             }
             else
             {
-                val = value;
-                Debug.Log("현재 체력 : " + val);
+                hp = value;
             }
         }
     }
@@ -51,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             Hp = 0;
         }
         else if (Input.GetKeyDown(KeyCode.C))
-        {
+        {   
             Idx++;
             Debug.Log(Idx);
         }
@@ -64,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        Vector3 moveDistance = new Vector3(playerInput.XAxis, 0f, playerInput.YAxis) * moveSpeed * Time.deltaTime;
+        Vector3 moveDistance = new Vector3(1f*playerInput.XAxis, 0f, 1f*playerInput.ZAxis) * moveSpeed * Time.deltaTime;
         playerRigidbody.MovePosition(playerRigidbody.position + moveDistance);
     }
 }

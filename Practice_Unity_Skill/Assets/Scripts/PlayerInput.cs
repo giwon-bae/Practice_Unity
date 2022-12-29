@@ -5,22 +5,14 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     public string moveAxisXName = "Vertical";
-    public string moveAxisYName = "Horizontal";
+    public string moveAxisZName = "Horizontal";
 
     public float XAxis { get; private set; }
-    public float YAxis { get; private set; }
-
-    PlayerMovement playerMovement;
-
-    private void Start()
-    {
-        playerMovement = GetComponent<PlayerMovement>();
-        playerMovement.Idx = 20;
-    }
+    public float ZAxis { get; private set; }
 
     void Update()
     {
         XAxis = Input.GetAxis(moveAxisXName);
-        YAxis = Input.GetAxis(moveAxisYName);
+        ZAxis = Input.GetAxis(moveAxisZName);
     }
 }
