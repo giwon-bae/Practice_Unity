@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    public string moveAxisXName = "Vertical";
-    public string moveAxisZName = "Horizontal";
+    public string moveAxisXName = "Horizontal";
+    public string moveAxisZName = "Vertical";
 
     public float XAxis { get; private set; }
     public float ZAxis { get; private set; }
