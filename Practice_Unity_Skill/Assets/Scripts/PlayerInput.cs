@@ -6,13 +6,16 @@ public class PlayerInput : MonoBehaviour
 {
     public string moveAxisXName = "Horizontal";
     public string moveAxisZName = "Vertical";
+    public string fireButtonName = "Fire1";
 
     public float XAxis { get; private set; }
     public float ZAxis { get; private set; }
+    public bool fire { get; private set; }
 
     void Update()
     {
         XAxis = Input.GetAxis(moveAxisXName);
         ZAxis = Input.GetAxis(moveAxisZName);
+        fire = Input.GetButton(fireButtonName);
     }
 }

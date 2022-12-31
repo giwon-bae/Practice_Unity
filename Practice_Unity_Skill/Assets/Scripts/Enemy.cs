@@ -15,16 +15,9 @@ public class Enemy : MonoBehaviour, IDamage, IAttack
         Debug.Log("АјАн!");
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         OnDamage(10f, this.transform.position);
         Attack();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
