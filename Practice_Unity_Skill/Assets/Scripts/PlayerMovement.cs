@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
+        
+
+    public GameObject missilePrefab;
 
     private PlayerInput playerInput;
     private Rigidbody playerRigidbody;
@@ -38,6 +41,14 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
     }
 
+    private void Update()
+    {
+        if (playerInput.fire)
+        {
+            Instantiate(missilePrefab, transform.position + Vector3.up, transform.rotation);
+        }
+    }
+
     private void FixedUpdate()
     {
         Move();
@@ -47,5 +58,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 moveDistance = new Vector3(playerInput.XAxis, 0f, playerInput.ZAxis).normalized * moveSpeed * Time.deltaTime;
         playerRigidbody.MovePosition(playerRigidbody.position + moveDistance);
+        transform.LookAt(playerRigidbody.position + moveDistance);
     }
 }
