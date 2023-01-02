@@ -58,6 +58,13 @@ public class Missile : MonoBehaviour
     {
         if (collision.transform.CompareTag("Enemy"))
         {
+            IDamage target = collision.collider.GetComponent<IDamage>();
+            
+            if(target != null)
+            {
+                target.OnDamage(10, collision.transform.position);
+            }
+
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
