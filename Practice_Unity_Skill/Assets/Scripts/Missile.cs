@@ -65,7 +65,7 @@ public class Missile : MonoBehaviour
                 target.OnDamage(10, collision.transform.position);
             }
 
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
             Destroy(gameObject);
         }
     }

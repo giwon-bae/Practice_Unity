@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour, IDamage, IAttack
     {
         Debug.Log(damage + "의 피해를 입음.");
         Debug.Log(hitPoint);
+        EnemySpawner.instance.InsertQueue(gameObject);
+        EnemySpawner.instance.countEnemy--;
     }
 
     public void Attack()
@@ -17,7 +19,11 @@ public class Enemy : MonoBehaviour, IDamage, IAttack
 
     void Start()
     {
-        OnDamage(10f, this.transform.position);
+
+    }
+
+    private void OnEnable()
+    {
         Attack();
     }
 }
