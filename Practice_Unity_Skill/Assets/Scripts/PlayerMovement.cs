@@ -5,9 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-        
 
-    public GameObject missilePrefab;
 
     private PlayerInput playerInput;
     private Rigidbody playerRigidbody;
@@ -43,10 +41,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if (playerInput.fire)
-        {
-            Instantiate(missilePrefab, transform.position + Vector3.up, transform.rotation);
-        }
+        
     }
 
     private void FixedUpdate()

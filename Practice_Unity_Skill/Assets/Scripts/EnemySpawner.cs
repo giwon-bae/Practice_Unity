@@ -8,28 +8,24 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject[] enemyPrefabs;
     public Transform[] spawnPoints;
-    public Queue<GameObject> objectPool = new Queue<GameObject>();
+    
 
     public int countEnemy = 0;
 
     //List<GameObject>[] pools;
 
+    public Queue<GameObject> objectPool = new Queue<GameObject>();
+
     private void Awake()
     {
         instance = this;
 
-        for(int i=0; i<10; i++)
+        for(int i=0; i<2; i++)
         {
             GameObject tmpObject = Instantiate(enemyPrefabs[0], Vector3.zero, Quaternion.identity);
             objectPool.Enqueue(tmpObject);
             tmpObject.SetActive(false);
         }
-        //pools = new List<GameObject>[enemyPrefabs.Length];
-
-        //for(int i=0; i<pools.Length; i++)
-        //{
-        //    pools[i] = new List<GameObject>();
-        //}
     }
 
     private void Update()
@@ -52,11 +48,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void CreateEnemy()
     {
-        GameObject tmpObject = GetQueue();
-        //GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+        if (objectPool.Count == 0)
+        {
+            GameObject tmpObject = Instantiate(enemyPrefabs[0], Vector3.zero, Quaternion.identity);
+            objectPool.Enqueue(tmpObject);
+        }
+        GameObject getObject = GetQueue();
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        //Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        tmpObject.transform.position = spawnPoint.position;
+        getObject.transform.position = spawnPoint.position;
     }
 
     //public GameObject Get(int index)
@@ -90,8 +89,8 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject GetQueue()
     {
-        GameObject tmpObject = objectPool.Dequeue();
-        tmpObject.SetActive(true);
-        return tmpObject;
+        GameObject getObject = objectPool.Dequeue();
+        getObject.SetActive(true);
+        return getObject;
     }
 }
