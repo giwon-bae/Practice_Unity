@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
 
-
     private PlayerInput playerInput;
     private Rigidbody playerRigidbody;
 

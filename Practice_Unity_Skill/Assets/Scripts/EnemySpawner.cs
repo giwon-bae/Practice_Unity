@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject[] enemyPrefabs;
     public Transform[] spawnPoints;
-    
 
     public int countEnemy = 0;
 

@@ -1,45 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Missile : MonoBehaviour
 {
-    Rigidbody m_rigid = null;
-    Transform m_tfTarget = null;
-
     [SerializeField] float m_speed = 0f;
-    float m_currentSpeed = 0f;
     [SerializeField] LayerMask m_layerMask = 0;
 
-    void SearchEnemy()
-    {
-        Collider[] t_cols = Physics.OverlapSphere(transform.position, 100f, m_layerMask);
+    private Rigidbody m_rigid = null;
+    private Transform m_tfTarget = null;
+    private IObjectPool<Missile> missilePool;
 
-        if(t_cols.Length > 0)
-        {
-            m_tfTarget = t_cols[Random.Range(0, t_cols.Length)].transform;
-        }
-    }
+    private float m_currentSpeed = 0f;
 
-    IEnumerator LaunchDelay()
-    {
-        yield return new WaitUntil(() => m_rigid.velocity.y < 0f);
-        yield return new WaitForSeconds(0.1f);
-
-        SearchEnemy();
-
-        yield return new WaitForSeconds(5f);
-        Destroy(gameObject);
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         m_rigid = GetComponent<Rigidbody>();
         StartCoroutine(LaunchDelay());
     }
 
-    // Update is called once per frame
+    private void OnEnable()
+    {
+        StartCoroutine(LaunchDelay());
+    }
+
     void Update()
     {
         if(m_tfTarget != null)
@@ -53,6 +38,7 @@ public class Missile : MonoBehaviour
             transform.up = Vector3.Lerp(transform.up, t_dir, 0.25f);
         }
     }
+    
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -63,10 +49,40 @@ public class Missile : MonoBehaviour
             if(target != null)
             {
                 target.OnDamage(10, collision.transform.position);
+                DestroyMissile();
             }
-
-            //Destroy(collision.gameObject);
-            Destroy(gameObject);
         }
+    }
+
+    public void SetPool(IObjectPool<Missile> pool)
+    {
+        missilePool = pool;
+    }
+
+    public void DestroyMissile()
+    {
+        StopCoroutine(LaunchDelay());
+        missilePool.Release(this);
+    }
+
+    void SearchEnemy()
+    {
+        Collider[] t_cols = Physics.OverlapSphere(transform.position, 100f, m_layerMask);
+
+        if (t_cols.Length > 0)
+        {
+            m_tfTarget = t_cols[Random.Range(0, t_cols.Length)].transform;
+        }
+    }
+
+    IEnumerator LaunchDelay()
+    {
+        yield return new WaitUntil(() => m_rigid.velocity.y < 0f);
+        yield return new WaitForSeconds(0.1f);
+
+        SearchEnemy();
+
+        yield return new WaitForSeconds(5f);
+        DestroyMissile();
     }
 }
