@@ -22,7 +22,7 @@ public class Missile : MonoBehaviour
 
     private void OnEnable()
     {
-        StartCoroutine(LaunchDelay());
+        //StartCoroutine(LaunchDelay());
     }
 
     void Update()
@@ -49,7 +49,8 @@ public class Missile : MonoBehaviour
             if(target != null)
             {
                 target.OnDamage(10, collision.transform.position);
-                DestroyMissile();
+                //DestroyMissile();
+                Destroy(gameObject);
             }
         }
     }
@@ -61,7 +62,7 @@ public class Missile : MonoBehaviour
 
     public void DestroyMissile()
     {
-        StopCoroutine(LaunchDelay());
+        //StopCoroutine(LaunchDelay());
         missilePool.Release(this);
     }
 
@@ -83,6 +84,7 @@ public class Missile : MonoBehaviour
         SearchEnemy();
 
         yield return new WaitForSeconds(5f);
-        DestroyMissile();
+        //DestroyMissile();
+        Destroy(gameObject);
     }
 }

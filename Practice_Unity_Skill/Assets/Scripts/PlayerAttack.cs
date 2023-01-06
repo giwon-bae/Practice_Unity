@@ -20,8 +20,8 @@ public class PlayerAttack : MonoBehaviour
     {
         if (playerInput.fire)
         {
-            //Instantiate(missilePrefab, transform.position + Vector3.up, transform.rotation);
-            missilePool.Get();
+            Instantiate(missilePrefab, transform.position + Vector3.up, transform.rotation);
+            //missilePool.Get();
         }
     }
 
