@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject missilePrefab;
+    public GameObject wallPrefab;
 
     private PlayerInput playerInput;
     private IObjectPool<Missile> missilePool;
@@ -22,6 +23,16 @@ public class PlayerAttack : MonoBehaviour
         {
             Instantiate(missilePrefab, transform.position + Vector3.up, transform.rotation);
             //missilePool.Get();
+        }
+
+        if (playerInput.wall)
+        {
+            RaycastHit hit;
+            if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit))
+            {
+                Instantiate(wallPrefab, hit.point + new Vector3(0, 1.5f, 0), Quaternion.identity);
+                MapManager.instance.GenerateNavmesh();
+            }
         }
     }
 

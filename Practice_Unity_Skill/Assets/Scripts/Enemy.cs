@@ -42,5 +42,6 @@ public class Enemy : MonoBehaviour, IDamage, IAttack
     private void Update()
     {
         navAgent.SetDestination(target.position);
+        //transform.position = Vector3.MoveTowards(transform.position, target.position, 1f * Time.deltaTime);
     }
 }

@@ -5,20 +5,22 @@ using UnityEngine.AI;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject mapPrefab;
+    public static MapManager instance;
 
-    private Vector3 generatePos = new Vector3(50, 0, 50);
+    [SerializeField] private GameObject mapPrefab;
+
+    private Vector3 generatePos = new Vector3(25, 0, 25);
 
     private void Awake()
     {
+        instance = this;
         GenerateNavmesh();
     }
 
-    private void GenerateNavmesh()
+    public void GenerateNavmesh()
     {
         GameObject obj = Instantiate(mapPrefab, generatePos, Quaternion.identity, transform);
-        generatePos += new Vector3(50, 0, 50);
+        generatePos += new Vector3(25, 0, 25);
 
         NavMeshSurface[] surfaces = gameObject.GetComponentsInChildren<NavMeshSurface>();
 
