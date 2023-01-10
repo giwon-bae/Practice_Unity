@@ -346,6 +346,8 @@
 "Assets/Scripts/EnemySpawner.cs"
 "Assets/Scripts/Gacha.cs"
 "Assets/Scripts/GameManager.cs"
+"Assets/Scripts/GridBehavior.cs"
+"Assets/Scripts/GridStat.cs"
 "Assets/Scripts/Interface.cs"
 "Assets/Scripts/MapManager.cs"
 "Assets/Scripts/Missile.cs"
