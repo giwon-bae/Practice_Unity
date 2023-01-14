@@ -352,11 +352,13 @@
 "Assets/Scripts/MapManager.cs"
 "Assets/Scripts/Missile.cs"
 "Assets/Scripts/MissileLauncher.cs"
+"Assets/Scripts/PathFinding.cs"
 "Assets/Scripts/PlayerAttack.cs"
 "Assets/Scripts/PlayerInput.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/Practice_Coroutine.cs"
 "Assets/Scripts/RandomIdx1.cs"
+"Assets/Scripts/tmpMove.cs"
 -langversion:9.0
 
 /deterministic

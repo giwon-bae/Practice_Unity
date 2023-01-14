@@ -12,10 +12,10 @@ public class GridBehavior : MonoBehaviour
     public GameObject gridPrefab;
     public Vector3 leftBottomLocation = new Vector3(0, 0, 0);
     public GameObject[,] gridArray;
-    public int startX = 0;
-    public int startY = 0;
-    public int endX = 2;
-    public int endY = 2;
+    public int startX;
+    public int startY;
+    public int endX;
+    public int endY;
     public List<GameObject> path = new List<GameObject>();
 
     private void Awake()
@@ -34,11 +34,22 @@ public class GridBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (findDistance)
+        //{
+        //    SetDistance();
+        //    SetPath();
+        //    findDistance = false;
+        //}
         if (findDistance)
         {
             SetDistance();
-            SetPath();
+
             findDistance = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("SetPath");
+            SetPath();
         }
     }
 
@@ -69,6 +80,7 @@ public class GridBehavior : MonoBehaviour
             {
                 if(obj && obj.GetComponent<GridStat>().visited == step - 1)
                 {
+                    Debug.Log("TestFourDirection");
                     TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
                 }
             }
@@ -106,7 +118,7 @@ public class GridBehavior : MonoBehaviour
                 tempList.Add(gridArray[x - 1, y]);
 
             GameObject tempObj = FindClosest(gridArray[endX, endY].transform, tempList);
-            Debug.Log(tempObj.name);
+            //Debug.Log(tempObj.name);
             path.Add(tempObj);
             x = tempObj.GetComponent<GridStat>().x;
             y = tempObj.GetComponent<GridStat>().y;
@@ -186,6 +198,7 @@ public class GridBehavior : MonoBehaviour
                 indexNumber = i;
             }
         }
+        Debug.Log(indexNumber);
         return list[indexNumber];
     }
 }
