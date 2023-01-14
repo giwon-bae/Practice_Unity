@@ -7,6 +7,8 @@ public class GridStat : MonoBehaviour
     public int visited = 1;
     public int x = 0;
     public int y = 0;
+    public int dirX;
+    public int dirY;
 
     // Start is called before the first frame update
     void Start()

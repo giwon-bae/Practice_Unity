@@ -17,6 +17,7 @@ public class GridBehavior : MonoBehaviour
     public int endX;
     public int endY;
     public List<GameObject> path = new List<GameObject>();
+    public float speed = 3f;
 
     private void Awake()
     {
@@ -50,6 +51,34 @@ public class GridBehavior : MonoBehaviour
         {
             Debug.Log("SetPath");
             SetPath();
+            StartCoroutine("Move");
+        }
+    }
+
+    IEnumerator Move()
+    {
+        Debug.Log("Start Coroutine");
+        int tmp = path.Count - 1;
+
+        while (tmp >= 0)
+        {
+            Debug.Log(tmp);
+            Vector3 moveDir = new Vector3(path[tmp].GetComponent<GridStat>().x - transform.position.x, 0, path[tmp].GetComponent<GridStat>().y - transform.position.y);
+            transform.Translate(moveDir * speed);
+            yield return new WaitUntil(() => CheckPos(path[tmp].GetComponent<GridStat>().x, path[tmp].GetComponent<GridStat>().y) == true);
+            tmp--;
+        }
+    }
+
+    bool CheckPos(int x, int y)
+    {
+        if(movePrefab.transform.position.x == x && movePrefab.transform.position.y == y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -118,7 +147,6 @@ public class GridBehavior : MonoBehaviour
                 tempList.Add(gridArray[x - 1, y]);
 
             GameObject tempObj = FindClosest(gridArray[endX, endY].transform, tempList);
-            //Debug.Log(tempObj.name);
             path.Add(tempObj);
             x = tempObj.GetComponent<GridStat>().x;
             y = tempObj.GetComponent<GridStat>().y;
@@ -198,7 +226,6 @@ public class GridBehavior : MonoBehaviour
                 indexNumber = i;
             }
         }
-        Debug.Log(indexNumber);
         return list[indexNumber];
     }
 }
