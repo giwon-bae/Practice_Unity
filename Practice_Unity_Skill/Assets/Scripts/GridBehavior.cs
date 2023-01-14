@@ -8,6 +8,7 @@ public class GridBehavior : MonoBehaviour
     public int rows = 10;
     public int columns = 10;
     public int scale = 1;
+    public GameObject movePrefab;
     public GameObject gridPrefab;
     public Vector3 leftBottomLocation = new Vector3(0, 0, 0);
     public GameObject[,] gridArray;
@@ -47,7 +48,7 @@ public class GridBehavior : MonoBehaviour
         {
             for(int j=0; j<rows; j++)
             {
-                GameObject obj = Instantiate(gridPrefab, new Vector3(leftBottomLocation.x + scale * i, leftBottomLocation.y + scale * j, leftBottomLocation.z + scale * j), Quaternion.identity);
+                GameObject obj = Instantiate(gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 1, leftBottomLocation.z + scale * j), Quaternion.identity);
                 obj.transform.SetParent(gameObject.transform);
                 obj.GetComponent<GridStat>().x = i;
                 obj.GetComponent<GridStat>().y = j;
@@ -81,6 +82,7 @@ public class GridBehavior : MonoBehaviour
         int y = endY;
         List<GameObject> tempList = new List<GameObject>();
         path.Clear();
+
         if (gridArray[endX, endY] && gridArray[endX, endY].GetComponent<GridStat>().visited > 0)
         {
             path.Add(gridArray[x, y]);
@@ -91,6 +93,7 @@ public class GridBehavior : MonoBehaviour
             print("Can't reach the desired location");
             return;
         }
+
         for(int i=step; step>-1; step--)
         {
             if (TestDirection(x, y, step, 1))
@@ -103,10 +106,13 @@ public class GridBehavior : MonoBehaviour
                 tempList.Add(gridArray[x - 1, y]);
 
             GameObject tempObj = FindClosest(gridArray[endX, endY].transform, tempList);
+            Debug.Log(tempObj.name);
             path.Add(tempObj);
             x = tempObj.GetComponent<GridStat>().x;
             y = tempObj.GetComponent<GridStat>().y;
             tempList.Clear();
+            Debug.Log(x + " " + y);
+            movePrefab.transform.position = new Vector3(x, 1, y);
         }
     }
 
