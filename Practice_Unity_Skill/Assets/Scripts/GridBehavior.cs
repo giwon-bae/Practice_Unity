@@ -52,12 +52,13 @@ public class GridBehavior : MonoBehaviour
         {
             Debug.Log("SetPath");
             SetPath();
-            StartCoroutine("Move");
+            Instantiate(movePrefab, new Vector3(startX, 0.5f, startY), Quaternion.identity);
+            //StartCoroutine("Move");
         }
-        if (CanMove)
-        {
-            movePrefab.transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        }
+        //if (CanMove)
+        //{
+        //    movePrefab.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        //}
     }
 
     IEnumerator Move()
@@ -68,9 +69,7 @@ public class GridBehavior : MonoBehaviour
         while (tmp >= 0)
         {
             Vector3 moveDir = new Vector3(path[tmp].GetComponent<GridStat>().x, 0, path[tmp].GetComponent<GridStat>().y);
-            ////movePrefab.transform.Translate(moveDir * speed);
             Debug.Log(moveDir + " " + path[tmp].GetComponent<GridStat>().x + " " + path[tmp].GetComponent<GridStat>().y);
-            //movePrefab.GetComponent<Rigidbody>().velocity = moveDir * speed;
             movePrefab.transform.LookAt(moveDir);
             yield return new WaitUntil(() => CheckPos(path[tmp].GetComponent<GridStat>().x, path[tmp].GetComponent<GridStat>().y) == true);
             tmp--;
@@ -83,8 +82,6 @@ public class GridBehavior : MonoBehaviour
     {
         if(movePrefab.transform.position.x >= x-0.1f && movePrefab.transform.position.x <= x + 0.1f && movePrefab.transform.position.z >= y-0.1f && movePrefab.transform.position.z <= y + 0.1f)
         {
-            Debug.Log("Same");
-            //movePrefab.GetComponent<Rigidbody>().velocity = Vector3.zero;
             return true;
         }
         else
@@ -106,6 +103,12 @@ public class GridBehavior : MonoBehaviour
                 gridArray[i, j] = obj;
             }
         }
+    }
+
+    void ResetGrid()
+    {
+        System.Array.Clear(gridArray, 0, gridArray.Length);
+        //how to add array
     }
 
     void SetDistance()
