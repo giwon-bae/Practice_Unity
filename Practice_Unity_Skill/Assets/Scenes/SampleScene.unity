@@ -2327,6 +2327,8 @@ MonoBehaviour:
   endX: 2
   endY: 2
   path: []
+  speed: 0.5
+  CanMove: 0
 --- !u!4 &442624255
 Transform:
   m_ObjectHideFlags: 0
@@ -13717,7 +13719,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7446274247656577075, guid: c33bd0025a180e440a8bde87bce53c8f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7446274247656577075, guid: c33bd0025a180e440a8bde87bce53c8f, type: 3}
       propertyPath: m_LocalPosition.z

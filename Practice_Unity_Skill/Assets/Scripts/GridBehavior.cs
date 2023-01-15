@@ -17,7 +17,8 @@ public class GridBehavior : MonoBehaviour
     public int endX;
     public int endY;
     public List<GameObject> path = new List<GameObject>();
-    public float speed = 3f;
+    public float speed = 0.5f;
+    public bool CanMove = false;
 
     private void Awake()
     {
@@ -53,6 +54,10 @@ public class GridBehavior : MonoBehaviour
             SetPath();
             StartCoroutine("Move");
         }
+        if (CanMove)
+        {
+            movePrefab.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        }
     }
 
     IEnumerator Move()
@@ -62,18 +67,24 @@ public class GridBehavior : MonoBehaviour
 
         while (tmp >= 0)
         {
-            Debug.Log(tmp);
-            Vector3 moveDir = new Vector3(path[tmp].GetComponent<GridStat>().x - transform.position.x, 0, path[tmp].GetComponent<GridStat>().y - transform.position.y);
-            transform.Translate(moveDir * speed);
+            Vector3 moveDir = new Vector3(path[tmp].GetComponent<GridStat>().x, 0, path[tmp].GetComponent<GridStat>().y);
+            ////movePrefab.transform.Translate(moveDir * speed);
+            Debug.Log(moveDir + " " + path[tmp].GetComponent<GridStat>().x + " " + path[tmp].GetComponent<GridStat>().y);
+            //movePrefab.GetComponent<Rigidbody>().velocity = moveDir * speed;
+            movePrefab.transform.LookAt(moveDir);
             yield return new WaitUntil(() => CheckPos(path[tmp].GetComponent<GridStat>().x, path[tmp].GetComponent<GridStat>().y) == true);
             tmp--;
         }
+
+        CanMove = false;
     }
 
     bool CheckPos(int x, int y)
     {
-        if(movePrefab.transform.position.x == x && movePrefab.transform.position.y == y)
+        if(movePrefab.transform.position.x >= x-0.1f && movePrefab.transform.position.x <= x + 0.1f && movePrefab.transform.position.z >= y-0.1f && movePrefab.transform.position.z <= y + 0.1f)
         {
+            Debug.Log("Same");
+            //movePrefab.GetComponent<Rigidbody>().velocity = Vector3.zero;
             return true;
         }
         else
@@ -88,7 +99,7 @@ public class GridBehavior : MonoBehaviour
         {
             for(int j=0; j<rows; j++)
             {
-                GameObject obj = Instantiate(gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 1, leftBottomLocation.z + scale * j), Quaternion.identity);
+                GameObject obj = Instantiate(gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 0.5f, leftBottomLocation.z + scale * j), Quaternion.identity);
                 obj.transform.SetParent(gameObject.transform);
                 obj.GetComponent<GridStat>().x = i;
                 obj.GetComponent<GridStat>().y = j;
@@ -152,7 +163,7 @@ public class GridBehavior : MonoBehaviour
             y = tempObj.GetComponent<GridStat>().y;
             tempList.Clear();
             Debug.Log(x + " " + y);
-            movePrefab.transform.position = new Vector3(x, 1, y);
+            //movePrefab.transform.position = new Vector3(x, 1, y);
         }
     }
 
