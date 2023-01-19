@@ -17,6 +17,8 @@ public class PathFinding : MonoBehaviour
     public int endX;
     public int endY;
     public List<GameObject> path = new List<GameObject>();
+    public float speed = 0.5f;
+    public bool CanMove = false;
 
     private void Awake()
     {
@@ -34,16 +36,57 @@ public class PathFinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (findDistance)
+        //{
+        //    SetDistance();
+        //    SetPath();
+        //    findDistance = false;
+        //}
         if (findDistance)
         {
             SetDistance();
-            
+
             findDistance = false;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("SetPath");
             SetPath();
+            Instantiate(movePrefab, new Vector3(startX, 0.5f, startY), Quaternion.identity);
+            //StartCoroutine("Move");
+        }
+        //if (CanMove)
+        //{
+        //    movePrefab.transform.Translate(Vector3.forward * speed * Time.deltaTime);
+        //}
+    }
+
+    IEnumerator Move()
+    {
+        Debug.Log("Start Coroutine");
+        int tmp = path.Count - 1;
+
+        while (tmp >= 0)
+        {
+            Vector3 moveDir = new Vector3(path[tmp].GetComponent<GridStat>().x, 0, path[tmp].GetComponent<GridStat>().y);
+            Debug.Log(moveDir + " " + path[tmp].GetComponent<GridStat>().x + " " + path[tmp].GetComponent<GridStat>().y);
+            movePrefab.transform.LookAt(moveDir);
+            yield return new WaitUntil(() => CheckPos(path[tmp].GetComponent<GridStat>().x, path[tmp].GetComponent<GridStat>().y) == true);
+            tmp--;
+        }
+
+        CanMove = false;
+    }
+
+    bool CheckPos(int x, int y)
+    {
+        if (movePrefab.transform.position.x >= x - 0.1f && movePrefab.transform.position.x <= x + 0.1f && movePrefab.transform.position.z >= y - 0.1f && movePrefab.transform.position.z <= y + 0.1f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -53,7 +96,7 @@ public class PathFinding : MonoBehaviour
         {
             for (int j = 0; j < rows; j++)
             {
-                GameObject obj = Instantiate(gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 1, leftBottomLocation.z + scale * j), Quaternion.identity);
+                GameObject obj = Instantiate(gridPrefab, new Vector3(leftBottomLocation.x + scale * i, 0.5f, leftBottomLocation.z + scale * j), Quaternion.identity);
                 obj.transform.SetParent(gameObject.transform);
                 obj.GetComponent<GridStat>().x = i;
                 obj.GetComponent<GridStat>().y = j;
@@ -62,21 +105,25 @@ public class PathFinding : MonoBehaviour
         }
     }
 
+    void ResetGrid()
+    {
+        System.Array.Clear(gridArray, 0, gridArray.Length);
+        //how to add array
+    }
+
     void SetDistance()
     {
         InitialSetUp();
         int x = startX;
         int y = startY;
         int[] testArraty = new int[rows * columns];
-
-        //check
         for (int step = 1; step < rows * columns; step++)
         {
             foreach (GameObject obj in gridArray)
             {
                 if (obj && obj.GetComponent<GridStat>().visited == step - 1)
                 {
-                    
+                    Debug.Log("TestFourDirection");
                     TestFourDirections(obj.GetComponent<GridStat>().x, obj.GetComponent<GridStat>().y, step);
                 }
             }
@@ -114,13 +161,12 @@ public class PathFinding : MonoBehaviour
                 tempList.Add(gridArray[x - 1, y]);
 
             GameObject tempObj = FindClosest(gridArray[endX, endY].transform, tempList);
-            //Debug.Log(tempObj.name);
             path.Add(tempObj);
             x = tempObj.GetComponent<GridStat>().x;
             y = tempObj.GetComponent<GridStat>().y;
             tempList.Clear();
             Debug.Log(x + " " + y);
-            movePrefab.transform.position = new Vector3(x, 1, y);
+            //movePrefab.transform.position = new Vector3(x, 1, y);
         }
     }
 
@@ -164,7 +210,6 @@ public class PathFinding : MonoBehaviour
 
     void TestFourDirections(int x, int y, int step)
     {
-        Debug.Log("TestFourDirection");
         if (TestDirection(x, y, -1, 1))
             SetVisited(x, y + 1, step);
         if (TestDirection(x, y, -1, 2))
@@ -195,7 +240,6 @@ public class PathFinding : MonoBehaviour
                 indexNumber = i;
             }
         }
-        //Debug.Log(indexNumber);
         return list[indexNumber];
     }
 }

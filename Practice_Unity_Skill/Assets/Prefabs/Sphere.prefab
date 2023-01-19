@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6034802965704990821}
   - component: {fileID: 6976466280667802179}
   - component: {fileID: 9001988574289093618}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,4 +130,3 @@ MonoBehaviour:
   hp: 0
   canMove: 0
   speed: 1.5
-  target: {fileID: 0}

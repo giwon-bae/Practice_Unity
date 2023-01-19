@@ -34,8 +34,7 @@ public class Enemy : MonoBehaviour, IDamage, IAttack
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         navAgent = GetComponent<NavMeshAgent>();
-        // need to change
-        gridBehavior = GetComponent<GridBehavior>();
+        gridBehavior = GameObject.Find("Grid Generator").GetComponent<GridBehavior>();
     }
 
     private void OnEnable()
