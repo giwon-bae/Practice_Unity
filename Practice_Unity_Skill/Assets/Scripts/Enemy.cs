@@ -41,6 +41,7 @@ public class Enemy : MonoBehaviour, IDamage, IAttack
     {
         Attack();
         hp = 100;
+        StartCoroutine("Move");
     }
 
     private void Update()
@@ -48,11 +49,6 @@ public class Enemy : MonoBehaviour, IDamage, IAttack
         //navAgent.SetDestination(target.position);
         //transform.position = Vector3.MoveTowards(transform.position, target.position, 1f * Time.deltaTime);
 
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            StartCoroutine("Move");
-        }
         if (canMove)
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);

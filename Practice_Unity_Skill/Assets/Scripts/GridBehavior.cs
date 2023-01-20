@@ -36,29 +36,17 @@ public class GridBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (findDistance)
-        //{
-        //    SetDistance();
-        //    SetPath();
-        //    findDistance = false;
-        //}
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            InitialSetUp();
+        }
         if (findDistance)
         {
             SetDistance();
-
-            findDistance = false;
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("SetPath");
             SetPath();
             Instantiate(movePrefab, new Vector3(startX, 0.5f, startY), Quaternion.identity);
-            //StartCoroutine("Move");
+            findDistance = false;
         }
-        //if (CanMove)
-        //{
-        //    movePrefab.transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        //}
     }
 
     IEnumerator Move()
@@ -113,7 +101,7 @@ public class GridBehavior : MonoBehaviour
 
     void SetDistance()
     {
-        InitialSetUp();
+        
         int x = startX;
         int y = startY;
         int[] testArraty = new int[rows * columns];
