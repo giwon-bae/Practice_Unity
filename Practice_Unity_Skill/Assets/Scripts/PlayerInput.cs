@@ -19,6 +19,6 @@ public class PlayerInput : MonoBehaviour
         XAxis = Input.GetAxis(moveAxisXName);
         ZAxis = Input.GetAxis(moveAxisZName);
         fire = Input.GetButtonDown(fireButtonName);
-        wall = Input.GetButtonDown(wallButtonName);
+        //wall = Input.GetButtonDown(wallButtonName);
     }
 }
