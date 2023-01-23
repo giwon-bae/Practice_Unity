@@ -355,6 +355,7 @@
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/Practice Project JackPot/Card.cs"
 "Assets/Scripts/Practice Project JackPot/CardManager.cs"
+"Assets/Scripts/Practice Project JackPot/DraggableUI.cs"
 "Assets/Scripts/Practice Project JackPot/GridBehavior.cs"
 "Assets/Scripts/Practice Project JackPot/GridStat.cs"
 "Assets/Scripts/Practice Project JackPot/PathFinding.cs"

@@ -22,6 +22,9 @@ public class GridBehavior : MonoBehaviour
     public float speed = 0.5f;
     public bool CanMove = false;
 
+    [SerializeField] LayerMask layerMask;
+    private Ray ray;
+
     private void Awake()
     {
         gridArray = new GameObject[columns, rows];
@@ -58,6 +61,7 @@ public class GridBehavior : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             GameObject target = GetClickObject();
+            if (target == null) return;
             if(target.layer == 13)
             {
                 if (target.GetComponent<GridStat>().visited == -2)
@@ -70,16 +74,19 @@ public class GridBehavior : MonoBehaviour
                 }
             }
         }
+
+        Debug.DrawRay(ray.origin, ray.direction * 30, Color.red);
     }
 
     private GameObject GetClickObject()
     {
         RaycastHit hit;
-        LayerMask layerMask = 13;
+        
         GameObject target = null;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //Ray 
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if (Physics.Raycast(ray.origin, ray.direction, out hit, layerMask))
+        if (Physics.Raycast(ray.origin, ray.direction, out hit, 30f, layerMask))
         {
             target = hit.collider.gameObject;
             Debug.Log("RayCast : " + target);

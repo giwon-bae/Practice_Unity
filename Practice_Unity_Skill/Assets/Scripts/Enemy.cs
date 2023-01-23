@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour, IDamage, IAttack
 {
     public int hp;
-    public bool canMove = false;
+    public bool canMove = true;
     public float speed = 1.5f;
 
     //public Transform target;
