@@ -10,8 +10,8 @@ public class GridStat : MonoBehaviour
     public int dirX;
     public int dirY;
 
-    private Renderer rend;
-    private Color initialColor;
+    public Renderer rend;
+    public Color initialColor;
 
     // Start is called before the first frame update
     void Start()
@@ -23,23 +23,31 @@ public class GridStat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(visited == -2)
-        {
-            rend.material.color = Color.red;
-        }
-        else
-        {
-            rend.material.color = initialColor;
-        }
+        //if(visited == -2)
+        //{
+        //    rend.material.color = Color.red;
+        //}
+        //else
+        //{
+        //    rend.material.color = initialColor;
+        //}
     }
 
     private void OnMouseEnter()
     {
         //visited = -2;
+        Debug.Log("Enter");
+        rend.material.color = Color.green;
     }
 
     private void OnMouseExit()
     {
         //visited = -1;
+        rend.material.color = initialColor;
+    }
+
+    private void OnMouseUp()
+    {
+        Debug.Log("Up");
     }
 }

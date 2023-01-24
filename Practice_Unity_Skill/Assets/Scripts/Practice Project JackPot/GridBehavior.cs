@@ -20,7 +20,9 @@ public class GridBehavior : MonoBehaviour
     public int endY;
     public List<GameObject> path = new List<GameObject>();
     public float speed = 0.5f;
-    public bool CanMove = false;
+    public bool canMove = false;
+
+    public bool selectCard = false;
 
     [SerializeField] LayerMask layerMask;
     private Ray ray;
@@ -62,15 +64,20 @@ public class GridBehavior : MonoBehaviour
         {
             GameObject target = GetClickObject();
             if (target == null) return;
-            if(target.layer == 13)
+            if(target.layer == 13 && selectCard)
             {
                 if (target.GetComponent<GridStat>().visited == -2)
                 {
                     target.GetComponent<GridStat>().visited = -1;
+                    target.GetComponent<GridStat>().rend.material.color = Color.blue;
+                    target.GetComponent<GridStat>().initialColor = Color.blue;
+
                 }
                 else
                 {
                     target.GetComponent<GridStat>().visited = -2;
+                    target.GetComponent<GridStat>().rend.material.color = Color.red;
+                    target.GetComponent<GridStat>().initialColor = Color.red;
                 }
             }
         }
@@ -109,7 +116,7 @@ public class GridBehavior : MonoBehaviour
             tmp--;
         }
 
-        CanMove = false;
+        canMove = false;
     }
 
     bool CheckPos(int x, int y)
